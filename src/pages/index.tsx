@@ -1,8 +1,18 @@
 import type { NextPage } from "next";
 import { prisma } from "../db/client";
 import Head from "next/head";
+import { trpc } from "../utils/trpc";
 
 const Home: NextPage = (props: any) => {
+  const { data } = trpc.useQuery([
+    "hello",
+    {
+      text: "okay",
+    },
+  ]);
+
+  console.log(data);
+
   return (
     <div>
       <Head>
