@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import { useRef } from "react";
 import { trpc } from "../utils/trpc";
 
@@ -37,10 +38,14 @@ const Home: NextPage = () => {
 
   return (
     <div className="p-8">
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-2">
         <h1 className="text-4xl font-extrabold tracking-tight">Questions:</h1>
         {data.map((question) => {
-          return <div key={question.id}>{question.question}</div>;
+          return (
+            <Link key={question.id} href={`/question/${question.id}`} passHref>
+              <a>{question.question}</a>
+            </Link>
+          );
         })}
       </div>
       <QuestionCreator />
