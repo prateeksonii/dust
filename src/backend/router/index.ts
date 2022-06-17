@@ -1,10 +1,9 @@
-import * as trpc from "@trpc/server";
 import superjson from "superjson";
 import { prisma } from "../../db/client";
+import { createRouter } from "../context";
 import { questionsRouter } from "./questions";
 
-export const appRouter = trpc
-  .router()
+export const appRouter = createRouter()
   .transformer(superjson)
   .merge("questions.", questionsRouter);
 

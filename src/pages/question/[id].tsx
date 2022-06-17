@@ -14,11 +14,19 @@ const QuestionPageContent: React.FC<{ id: string }> = ({ id }) => {
 
   if (!data) return <div>Question not found</div>;
 
+  const { question, isOwner } = data;
+
   return (
-    <div className="p-6 flex flex-col gap-2">
-      <div className="text-2xl font-bold">{data.question}</div>
+    <div className="flex flex-col gap-2 p-6">
+      {isOwner && (
+        <div className="mb-8 rounded-md bg-indigo-600 p-3 text-2xl font-bold">
+          You created it
+        </div>
+      )}
+
+      <div className="text-2xl font-bold">{question?.question}</div>
       <div>
-        {(data.options as string[]).map((option, idx) => (
+        {(question?.options as string[]).map((option, idx) => (
           <div key={idx}>{option}</div>
         ))}
       </div>

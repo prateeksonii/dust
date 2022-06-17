@@ -20,6 +20,8 @@ model PollQuestion {
   ownerToken String    @db.VarChar(255)
   options    Json
   votes      Vote[]
+
+  @@index([ownerToken])
 }
 
 model Vote {
