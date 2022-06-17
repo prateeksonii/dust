@@ -6,6 +6,8 @@ import { createRouter } from "../context";
 export const questionsRouter = createRouter()
   .query("get-all-by-owner", {
     async resolve({ ctx }) {
+      if (!ctx.token) return [];
+
       return await prisma.pollQuestion.findMany({
         where: {
           ownerToken: ctx.token,
